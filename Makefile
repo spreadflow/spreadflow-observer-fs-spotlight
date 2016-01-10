@@ -1,25 +1,28 @@
 EXECUTABLE=spreadflow-observer-fs-spotlight
 SOURCES=\
 	spreadflow-observer-fs-spotlight.m\
-	vendor/ObjectiveBSON/BSON/BSONSerialization.m
+	BSONSerialization.m
 
 FRAMEWORKS=-framework Foundation
 LIBRARIES=-lobjc
-INCLUDES=-Ivendor/ObjectiveBSON/BSON
 CFLAGS=-Wall -Werror -fobjc-arc -g
 LDFLAGS=$(LIBRARIES) $(FRAMEWORKS)
 
 CXX=clang
-OBJECTS=$(SOURCES:.m=.m.o)
+OBJECTS=$(patsubst %.m,build/%.m.o,$(SOURCES))
 
-%.m.o: %.m
-	$(CXX) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+all: build/$(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS)
+build:
+	@mkdir -p $@
+
+build/%.m.o: %.m
+	$(CXX) $(CFLAGS) -o $@ -c $<
+
+$(OBJECTS): | build
+build/$(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
-
-all: $(EXECUTABLE)
 
 .PHONY: clean
 clean:
-	rm -f $(EXECUTABLE) $(OBJECTS)
+	rm -rf build
