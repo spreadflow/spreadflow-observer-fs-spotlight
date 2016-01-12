@@ -45,6 +45,7 @@
 
 - (NSData*)BSONRepresentation {
     NSDictionary *message = @{
+        @"type": @"delta",
         @"date": [NSDate date],
         @"deletes": _deletableOids,
         @"inserts": _insertableOids,
