@@ -1,0 +1,3 @@
+[submodule "vendor/ObjectiveBSON"]
+	path = vendor/ObjectiveBSON
+	url = https://github.com/JeremyOT/ObjectiveBSON.git
