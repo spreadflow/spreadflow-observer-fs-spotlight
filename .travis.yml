@@ -1,4 +1,7 @@
 language:
   - objective-c
+xcode_sdk:
+  - macosx10.10
+  - macosx10.11
 script:
   - make

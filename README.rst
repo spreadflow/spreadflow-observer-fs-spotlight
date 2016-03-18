@@ -5,6 +5,12 @@ SpreadFlow Filesystem Observer (OSX/Spotlight backend)
     :target: https://travis-ci.org/znerol/spreadflow-observer-fs-spotlight
 
 
+Requirements
+------------
+
+Mac OS X 10.10 or later.
+
+
 License
 -------
 
