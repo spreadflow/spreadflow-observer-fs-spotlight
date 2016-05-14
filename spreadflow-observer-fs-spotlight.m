@@ -45,11 +45,15 @@
 
 - (NSData*)BSONRepresentation {
     NSDictionary *message = @{
-        @"type": @"delta",
-        @"date": [NSDate date],
-        @"deletes": _deletableOids,
-        @"inserts": _insertableOids,
-        @"data": [NSDictionary dictionaryWithObjects:_insertableMetadata forKeys:_insertableOids]
+        // FIXME: Make the port name changeable.
+        @"port": "default",
+        @"item": @{
+            @"type": @"delta",
+            @"date": [NSDate date],
+            @"deletes": _deletableOids,
+            @"inserts": _insertableOids,
+            @"data": [NSDictionary dictionaryWithObjects:_insertableMetadata forKeys:_insertableOids]
+        }
     };
 
     return [message BSONRepresentation];
