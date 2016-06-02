@@ -46,7 +46,7 @@
 - (NSData*)BSONRepresentation {
     NSDictionary *message = @{
         // FIXME: Make the port name changeable.
-        @"port": "default",
+        @"port": @"default",
         @"item": @{
             @"type": @"delta",
             @"date": [NSDate date],
